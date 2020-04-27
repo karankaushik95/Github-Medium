@@ -1,5 +1,5 @@
 /**
- * https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/
+ * https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/submissions/
  * Definition for a binary tree node.
  * public class TreeNode {
  *     int val;
@@ -9,17 +9,23 @@
  * }
  */
 class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        ArrayList<List<Integer>> levelOrderList = new ArrayList<List<Integer>>();
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+        ArrayList<List<Integer>> zigzagOrder = new ArrayList<List<Integer>>();
         
         if(root==null){
-            return levelOrderList;
+            return zigzagOrder;
         }
         
-        levelOrderTraversal(root, levelOrderList, 0);
         
-        return levelOrderList;
-
+        levelOrderTraversal(root, zigzagOrder, 0);
+        
+        for(int i=1;i<zigzagOrder.size();i+=2){
+            Collections.reverse(zigzagOrder.get(i));
+        }
+        
+        return zigzagOrder;
+        
+        
     }
 
     public void levelOrderTraversal(TreeNode root, ArrayList<List<Integer>> levelOrderList, int level){
